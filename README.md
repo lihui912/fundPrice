@@ -5,5 +5,5 @@ The broker's URL and its fund code were removed from this repo. The random 0.1s 
 
 # Usage
 1. Edit `fundList.php` to add your fund's code.
-2. Run `php fundPrice.php`, the script will grab your fund's data and display them.
+2. Run `./fundPrice.php`, the script will grab your fund's data, display them and save a copy of it to a text file.
 3. Enjoy!
