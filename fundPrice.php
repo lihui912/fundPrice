@@ -15,7 +15,7 @@ echo "Please wait..." . date('Y-m-d H:i:s') . PHP_EOL;
 $priceListList = generatePriceListLink($linkTemplates, $fundList);
 $latestPriceList = getPriceList($priceListList);
 $outputText = generateOutput($latestPriceList);
-
+writeOutputFile($outputText);
 echo $outputText;
 // end
 
@@ -141,4 +141,14 @@ function generateOutput(array $latestPriceList = []): string {
     }
 
     return $output;
+}
+
+function writeOutputFile(string $text = ''): void {
+    $file = fopen(__DIR__ . '/' . date('Ymd') . '.txt', 'w');
+    
+    fwrite($file, $text);
+
+    fwrite($file, PHP_EOL . 'Retrived at: ' . date('YmdHis') . PHP_EOL);
+    
+    fclose($file);
 }
