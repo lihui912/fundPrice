@@ -46,8 +46,6 @@ function getPriceList(array $linkList = []) {
 
         $latestPriceList[$name] = getLatestPrice($jsonObject);
         
-        usleep(random_int(1000, 1000000));
-
         $fundReturnLink = sprintf($linkTemplates['fundReturn'], $jsonObject[0]['fundid'], $jsonObject[1]['showDate'], $jsonObject[0]['showDate']);
         
         $returnData = downloadLink($fundReturnLink, $thisLink['referer']);
@@ -58,14 +56,14 @@ function getPriceList(array $linkList = []) {
             'toDate' => $returnObject['toDate'],
             'fundReturns' => $returnObject['fundReturns'],
         ];
-
-        usleep(random_int(1000, 1000000));
     }
 
     return $latestPriceList;
 }
 
 function downloadLink(string $url = '', string $referer = ''): string {
+    usleep(random_int(1000, 1000000));
+
     $curl = curl_init();
 
     $urlComponents = parse_url($url);
